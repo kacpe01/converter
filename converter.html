@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KolekReps - Konwerter Linków</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="background-shapes">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+</div>
+
+<div class="header-wrapper">
+  <header class="main-header" id="main-header">
+    <a href="index.html" class="header-title">KolekReps</a>
+    <nav class="header-nav" id="main-nav"></nav>
+  </header>
+</div>
+
+<main class="page-section">
+  <div class="page-content">
+    <h1 class="page-title">Konwerter Linków</h1>
+    <p class="page-subtitle">Wklej link do produktu, aby wygenerować linki dla wszystkich agentów.</p>
+    <div class="form-container">
+      <input type="text" id="link-input" class="input-field" placeholder="Wklej link z kakobuy, weidian, etc...">
+      <button id="convert-button" class="btn btn-accent">Konwertuj</button>
+    </div>
+  </div>
+  <div id="results-container"></div>
+</main>
+
+<script src="nav.js"></script>
+<script src="converter.js"></script>
+
+</body>
+</html>
