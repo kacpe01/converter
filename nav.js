@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="https://kacpe01.github.io/converter/">Konwerter Linków</a>
             </div>
         </div>
-        // <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
+        <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
     `;
 
     const toggle = navContainer.querySelector('.nav-dropdown-toggle');
