@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navContainer || !mobileNavToggle) return;
 
     const navHTML = `
-        <a href="index.html">Strona Główna</a>
+        <a href="https://kolekreps.pages.dev/">Strona Główna</a>
         <div class="nav-dropdown-container">
             <button class="nav-dropdown-toggle">
                 <span>Narzędzia</span>
