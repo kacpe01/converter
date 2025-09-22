@@ -95,8 +95,8 @@ body {
     display: none;
     position: absolute;
     top: calc(100% + 8px);
-    left: 16px;
-    right: 16px;
+    left: 0;
+    right: 0;
     background-color: var(--primary-color);
     border: 1px solid var(--border-color);
     border-radius: 12px;
@@ -122,12 +122,13 @@ body {
   .nav-dropdown-container { width: 100%; }
   .nav-dropdown-toggle { justify-content: space-between; width: 100%; padding: 8px; }
   
+  /* --- OSTATECZNA POPRAWKA TUTAJ --- */
   .nav-dropdown-menu {
-    all: unset;
-    display: none;
+    all: unset; /* Resetuje WSZYSTKIE style, włącznie z pozycjonowaniem */
+    display: none; 
     width: 100%;
     margin-top: 8px;
-    padding-left: 24px;
+    padding-left: 24px; /* Dodaje wcięcie, aby wyrównać z resztą menu */
     box-sizing: border-box; 
   }
   .nav-dropdown-container.open .nav-dropdown-menu {
