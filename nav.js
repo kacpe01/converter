@@ -5,57 +5,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!navContainer || !mobileNavToggle) return;
 
+    // --- RÓŻNE NAWIGACJE DLA RÓŻNYCH EKRANÓW ---
     const desktopNavHTML = `
-        <a href="https://kolekreps.pages.dev/">Strona Główna</a>
-        <div class="nav-dropdown-container">
-            <button class="nav-dropdown-toggle">
-                <span>Narzędzia</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
-            </button>
-            <div class="nav-dropdown-menu">
-                <a href="https://kacpe01.github.io/converter/">Konwerter Linków</a>
+        <div class="desktop-nav">
+            <a href="https://kolekreps.pages.dev/">Strona Główna</a>
+            <div class="nav-dropdown-container">
+                <button class="nav-dropdown-toggle">
+                    <span>Narzędzia</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="https://kacpe01.github.io/converter/">Konwerter Linków</a>
+                </div>
             </div>
+            <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
         </div>
-        <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
     `;
 
     const mobileNavHTML = `
-        <a href="https://kolekreps.pages.dev/">Strona Główna</a>
-        <a href="https://kacpe01.github.io/converter/">Konwerter Linków</a>
-        <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
+        <div class="mobile-nav">
+            <a href="https://kolekreps.pages.dev/">Strona Główna</a>
+            <a href="https://kacpe01.github.io/converter/">Konwerter Linków</a>
+            <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
+        </div>
     `;
 
-    function setupNav() {
-        if (window.innerWidth > 768) {
-            navContainer.innerHTML = desktopNavHTML;
-            const desktopToggle = navContainer.querySelector('.nav-dropdown-toggle');
-            desktopToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                desktopToggle.parentElement.classList.toggle('open');
-            });
-        } else {
-            navContainer.innerHTML = mobileNavHTML;
-        }
-    }
+    navContainer.innerHTML = desktopNavHTML + mobileNavHTML;
 
-    setupNav(); // Uruchom na starcie
-    window.addEventListener('resize', setupNav); // Uruchom ponownie przy zmianie rozmiaru okna
+    // --- OBSŁUGA MENU ---
+    const desktopToggle = navContainer.querySelector('.nav-dropdown-toggle');
+    const mobileNavMenu = navContainer.querySelector('.mobile-nav');
+    
+    desktopToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        desktopToggle.parentElement.classList.toggle('open');
+    });
 
     mobileNavToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        navContainer.classList.toggle('is-open');
+        mobileNavMenu.classList.toggle('is-open');
     });
 
     document.addEventListener('click', () => {
-        const desktopDropdown = navContainer.querySelector('.nav-dropdown-container');
-        if (desktopDropdown && desktopDropdown.classList.contains('open')) {
-            desktopDropdown.classList.remove('open');
+        if (desktopToggle.parentElement.classList.contains('open')) {
+            desktopToggle.parentElement.classList.remove('open');
         }
-        if (navContainer.classList.contains('is-open')) {
-            navContainer.classList.remove('is-open');
+        if (mobileNavMenu.classList.contains('is-open')) {
+            mobileNavMenu.classList.remove('is-open');
         }
     });
 
+    // --- LOGIKA PRZEWIJANIA NAGŁÓWKA ---
     if (mainHeader) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
