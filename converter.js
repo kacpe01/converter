@@ -1,12 +1,17 @@
+// Plik: converter.js
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- ZAKTUALIZUJ LINKI DOKŁADNIE W TYM MIEJSCU ---
     const AGENTS = {
-        kakobuy: { name: 'Kakobuy', logo: 'https://i.imgur.com/gJd4wvQ.png', format: (id) => `https://kakobuy.com/item/details?url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D${id}` },
-        cnfans: { name: 'CNFans', logo: 'https://i.imgur.com/6Xjx6fC.png', format: (id) => `https://cnfans.com/product?id=${id}&platform=WEIDIAN` },
-        acbuy: { name: 'ACBuy', logo: 'https://i.imgur.com/2n38uvs.png', format: (id) => `https://www.acbuy.com/product?id=${id}&source=WD` },
-        lovegobuy: { name: 'Lovegobuy', logo: 'https://i.imgur.com/rM1gCZN.png', format: (id) => `https://lovegobuy.com/product?id=${id}&shop_type=weidian` },
-        mulebuy: { name: 'Mulebuy', logo: 'https://i.imgur.com/u4n44B4.png', format: (id) => `https://mulebuy.com/product?id=${id}&platform=WEIDIAN` },
-        hoobuy: { name: 'Hoobuy', logo: 'https://i.imgur.com/jxc2e7x.png', format: (id) => `https://hoobuy.com/product/2/${id}` }
+        kakobuy:   { name: 'Kakobuy',   logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/1200x1200bb.png',   format: (id) => `https://kakobuy.com/item/details?url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D${id}` },
+        cnfans:    { name: 'CNFans',    logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/0x0.png',    format: (id) => `https://cnfans.com/product?id=${id}&platform=WEIDIAN` },
+        acbuy:     { name: 'ACBuy',     logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/3333acbuy.png',     format: (id) => `https://www.acbuy.com/product?id=${id}&source=WD` },
+        lovegobuy: { name: 'Lovegobuy', logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/communityIcon_7puh8sbad05e1.png', format: (id) => `https://lovegobuy.com/product?id=${id}&shop_type=weidian` },
+        mulebuy:   { name: 'Mulebuy',   logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/mulebuy.png',   format: (id) => `https://mulebuy.com/product?id=${id}&platform=WEIDIAN` },
+        hoobuy:    { name: 'Hoobuy',    logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/images.png',    format: (id) => `https://hoobuy.com/product/2/${id}` }
     };
+    // ----------------------------------------------------
     
     const getItemId = (url) => {
         try {
