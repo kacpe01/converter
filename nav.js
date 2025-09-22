@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navContainer = document.getElementById('main-nav');
-    if (!navContainer) return;
+    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+    const mainHeader = document.getElementById('main-header');
 
-    navContainer.innerHTML = `
+    if (!navContainer || !mobileNavToggle) return;
+
+    const navHTML = `
         <a href="index.html">Strona Główna</a>
         <div class="nav-dropdown-container">
             <button class="nav-dropdown-toggle">
@@ -15,17 +18,36 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
     `;
+    navContainer.innerHTML = navHTML;
 
-    const toggle = navContainer.querySelector('.nav-dropdown-toggle');
+    const desktopToggle = navContainer.querySelector('.nav-dropdown-toggle');
     
-    toggle.addEventListener('click', (e) => {
+    desktopToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        toggle.parentElement.classList.toggle('open');
+        desktopToggle.parentElement.classList.toggle('open');
+    });
+
+    mobileNavToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navContainer.classList.toggle('is-open');
     });
 
     document.addEventListener('click', () => {
-        if (toggle.parentElement.classList.contains('open')) {
-            toggle.parentElement.classList.remove('open');
+        if (desktopToggle.parentElement.classList.contains('open')) {
+            desktopToggle.parentElement.classList.remove('open');
+        }
+        if (navContainer.classList.contains('is-open')) {
+            navContainer.classList.remove('is-open');
         }
     });
+
+    if (mainHeader) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+    }
 });
