@@ -123,21 +123,23 @@ body {
   .nav-dropdown-toggle { justify-content: space-between; width: 100%; padding: 8px; }
   
   .nav-dropdown-menu {
-    /* --- OSTATECZNA POPRAWKA TUTAJ --- */
-    all: unset; /* Resetuje wszystkie style, włącznie z pozycjonowaniem */
-    display: none; /* Pozostaje ukryte do otwarcia */
+    all: unset; /* Resetuje WSZYSTKIE style, włącznie z pozycjonowaniem */
+    display: none; 
     width: 100%;
     margin-top: 8px;
-    padding-left: 16px; /* Dodaje wcięcie */
-    box-sizing: border-box; /* Ważne, aby padding nie rozszerzał elementu */
+    padding-left: 24px; /* Dodaje wcięcie, aby wyrównać z resztą menu */
+    box-sizing: border-box; 
   }
   .nav-dropdown-container.open .nav-dropdown-menu {
-    display: flex; /* Pokazuje menu */
+    display: flex; 
     flex-direction: column;
     gap: 8px;
   }
   
-  .nav-dropdown-menu a { text-align: left; }
+  .nav-dropdown-menu a { 
+    text-align: left; 
+    width: 100%;
+  }
 
   .hero-buttons, .form-container { flex-direction: column; }
   .page-title { font-size: clamp(2rem, 12vw, 3rem); }
