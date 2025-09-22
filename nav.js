@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!navContainer || !mobileNavToggle) return;
 
+    // Generujemy obie nawigacje
     const desktopNavHTML = `
         <div class="desktop-nav">
             <a href="https://kolekreps.pages.dev/">Strona Główna</a>
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navContainer.innerHTML = desktopNavHTML + mobileNavHTML;
 
+    // --- OBSŁUGA MENU ---
     const desktopToggle = navContainer.querySelector('.nav-dropdown-toggle');
     const mobileNavMenu = navContainer.querySelector('.mobile-nav');
     
@@ -53,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- LOGIKA PRZEWIJANIA NAGŁÓWKA ---
     if (mainHeader) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
