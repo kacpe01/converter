@@ -123,18 +123,19 @@ body {
   .nav-dropdown-toggle { justify-content: space-between; width: 100%; padding: 8px; }
   
   .nav-dropdown-menu {
-    position: static;
-    left: auto; 
-    transform: none; 
-    opacity: 1;
-    display: none;
-    box-shadow: none;
-    border: none;
-    background: none;
-    padding: 0 0 0 16px;
+    /* --- OSTATECZNA POPRAWKA TUTAJ --- */
+    all: unset; /* Resetuje wszystkie style, włącznie z pozycjonowaniem */
+    display: none; /* Pozostaje ukryte do otwarcia */
+    width: 100%;
     margin-top: 8px;
+    padding-left: 16px; /* Dodaje wcięcie */
+    box-sizing: border-box; /* Ważne, aby padding nie rozszerzał elementu */
   }
-  .nav-dropdown-container.open .nav-dropdown-menu { display: flex; flex-direction: column; gap: 8px; }
+  .nav-dropdown-container.open .nav-dropdown-menu {
+    display: flex; /* Pokazuje menu */
+    flex-direction: column;
+    gap: 8px;
+  }
   
   .nav-dropdown-menu a { text-align: left; }
 
