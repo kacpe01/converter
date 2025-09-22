@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!navContainer || !mobileNavToggle) return;
 
-    // --- Ta sekcja tworzy nawigację tylko raz ---
+    // Generujemy JEDNĄ nawigację, a CSS decyduje, co pokazać
     const navHTML = `
-        <a href="index.html">Strona Główna</a>
+        <a href="https://kolekreps.pages.dev/">Strona Główna</a>
+
+        <!-- Ten element będzie widoczny tylko na desktopie dzięki CSS -->
         <div class="nav-dropdown-container">
             <button class="nav-dropdown-toggle">
                 <span>Narzędzia</span>
@@ -17,11 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="https://kacpe01.github.io/converter/">Konwerter Linków</a>
             </div>
         </div>
+
+        <!-- Ten link będzie widoczny tylko w mobilnym menu -->
+        <a href="https://kacpe01.github.io/converter/" style="display: none;" class="mobile-only-link">Konwerter Linków</a>
+
         <a href="https://kolekspreadsheet.pages.dev/">Spreadsheet</a>
     `;
     navContainer.innerHTML = navHTML;
 
-    // --- Logika dla menu ---
+    // Logika dla menu
     const desktopToggle = navContainer.querySelector('.nav-dropdown-toggle');
     
     desktopToggle.addEventListener('click', (e) => {
@@ -34,16 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
         navContainer.classList.toggle('is-open');
     });
 
-    document.addEventListener('click', () => {
+    document.addEventListener('click', (e) => {
         if (desktopToggle.parentElement.classList.contains('open')) {
             desktopToggle.parentElement.classList.remove('open');
         }
-        if (navContainer.classList.contains('is-open')) {
+        if (navContainer.classList.contains('is-open') && !navContainer.contains(e.target) && !mobileNavToggle.contains(e.target)) {
             navContainer.classList.remove('is-open');
         }
     });
 
-    // --- Logika przewijania nagłówka ---
+    // Logika przewijania nagłówka
     if (mainHeader) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
