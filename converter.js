@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mulebuy:   { name: 'Mulebuy',   logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/mulebuy.png',   format: (id) => `https://mulebuy.com/product?id=${id}&platform=WEIDIAN` },
         hoobuy:    { name: 'Hoobuy',    logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/images.png',    format: (id) => `https://hoobuy.com/product/2/${id}` }
     };
-
     
     const getItemId = (url) => {
         try {
@@ -30,16 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleConvert = () => {
         const url = linkInput.value.trim();
-        if (!url) {
-            alert("Proszę wkleić link.");
-            return;
-        }
+        if (!url) { alert("Proszę wkleić link."); return; }
 
         const itemId = getItemId(url);
-        if (!itemId) {
-            alert("Nieprawidłowy link. Nie udało się wyciągnąć ID produktu.");
-            return;
-        }
+        if (!itemId) { alert("Nieprawidłowy link. Nie udało się wyciągnąć ID produktu."); return; }
 
         resultsContainer.innerHTML = '';
         let delay = 0;
