@@ -1,8 +1,4 @@
-// Plik: converter.js
-
 document.addEventListener('DOMContentLoaded', () => {
-
-    // --- ZAKTUALIZUJ LINKI DOKŁADNIE W TYM MIEJSCU ---
     const AGENTS = {
         kakobuy:   { name: 'Kakobuy',   logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/1200x1200bb.png',   format: (id) => `https://kakobuy.com/item/details?url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D${id}` },
         cnfans:    { name: 'CNFans',    logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/0x0.png',    format: (id) => `https://cnfans.com/product?id=${id}&platform=WEIDIAN` },
@@ -11,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mulebuy:   { name: 'Mulebuy',   logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/mulebuy.png',   format: (id) => `https://mulebuy.com/product?id=${id}&platform=WEIDIAN` },
         hoobuy:    { name: 'Hoobuy',    logo: 'https://raw.githubusercontent.com/kacpe01/assets/refs/heads/main/images.png',    format: (id) => `https://hoobuy.com/product/2/${id}` }
     };
-    // ----------------------------------------------------
+
     
     const getItemId = (url) => {
         try {
