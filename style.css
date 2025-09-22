@@ -58,28 +58,4 @@ body {
 .hero-title { font-size: clamp(3rem, 12vw, 8rem); font-weight: 800; margin: 0 0 40px 0; background: linear-gradient(90deg, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInDown 1s ease-out; }
 .hero-buttons { display: flex; gap: 24px; animation: fadeInUp 1s ease-out 0.3s; animation-fill-mode: both; }
 
-.btn { border: none; padding: 14px 32px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; color: white; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: var(--transition-speed); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-.btn:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(0,0,0,0.4); }
-.btn:active { transform: translateY(-1px) scale(0.98); }
-.btn-discord { background-color: var(--discord-color); }
-.btn-discord:hover { background-color: #4a56d5; }
-.btn-kakobuy { background-color: var(--kakobuy-color); }
-.btn-kakobuy:hover { background-color: #c4322f; }
-
-.page-section { display: flex; flex-direction: column; align-items: center; text-align: center; min-height: calc(100vh - 102px); padding: 32px; }
-.page-content { width: 100%; max-width: 700px; }
-.page-title { font-size: clamp(2rem, 8vw, 4rem); font-weight: 700; margin: 0 0 16px 0; animation: fadeInDown 1s ease-out; }
-.page-subtitle { font-size: 1.1rem; font-weight: 300; color: var(--text-color-muted); margin: 0 0 40px 0; max-width: 450px; margin-left: auto; margin-right: auto; animation: fadeInDown 1s ease-out 0.2s; animation-fill-mode: both; }
-.form-container { display: flex; gap: 12px; width: 100%; animation: fadeInUp 1s ease-out 0.4s; animation-fill-mode: both; }
-.input-field { flex-grow: 1; height: 50px; background-color: var(--primary-color); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-color); padding: 0 20px; font-size: 16px; transition: var(--transition-speed); }
-.input-field:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(156, 77, 255, 0.2); }
-.btn-accent { background-color: var(--accent-color); padding: 0 32px; height: 50px; }
-.btn-accent:hover { background-color: var(--accent-hover-color); }
-
-#results-container { width: 100%; max-width: 700px; margin-top: 48px; display: flex; flex-direction: column; gap: 16px; }
-.result-button { background-color: var(--primary-color); border: 1px solid var(--border-color); color: var(--text-color); display: flex; align-items: center; padding: 12px 20px; border-radius: 10px; font-size: 16px; font-weight: 500; text-decoration: none; transition: var(--transition-speed); opacity: 0; animation: fadeInUp 0.5s ease-out forwards; animation-delay: var(--delay); }
-.result-button:hover { background-color: var(--border-color); transform: translateY(-2px); }
-.result-button img { width: 24px; height: 24px; border-radius: 5px; margin-right: 16px; }
-
-@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.btn { border: none; padding: 14px 32px; bord
