@@ -12,6 +12,7 @@
   --transition-speed: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body { 
@@ -62,6 +63,12 @@ body {
 .hero-section { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: calc(100vh - 120px); padding: 0 24px; }
 .hero-title { font-size: clamp(3rem, 12vw, 8rem); font-weight: 800; margin: 0 0 40px 0; background: linear-gradient(90deg, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInDown 1s ease-out; }
 .hero-buttons { display: flex; gap: 24px; animation: fadeInUp 1s ease-out 0.3s; animation-fill-mode: both; }
+
+.hero-title {
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .btn { border: none; padding: 14px 32px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; color: white; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: var(--transition-speed); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(0,0,0,0.4); }
@@ -129,4 +136,31 @@ body {
 
   .hero-buttons, .form-container { flex-direction: column; }
   .page-title { font-size: clamp(2rem, 12vw, 3rem); }
+}
+
+/* --- STYLE DLA IKON NAWIGACJI --- */
+
+/* Ustawienie linków i przycisku jako flex-container dla wyrównania */
+.desktop-nav a,
+.nav-dropdown-toggle,
+.mobile-nav a,
+.nav-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Odstęp między ikoną a tekstem */
+}
+
+/* Stylizacja samych ikon */
+.nav-icon {
+    width: 18px;
+    height: 18px;
+    /* Kolor ikony dziedziczony po kolorze tekstu, 
+       dzięki czemu zmienia się też przy najechaniu myszką */
+    fill: currentColor;
+    flex-shrink: 0; /* Zapobiega kurczeniu się ikony */
+}
+
+/* Poprawka dla przycisku Narzędzia, aby zachować odstęp od strzałki */
+.nav-dropdown-toggle span {
+    margin-right: 2px;
 }
