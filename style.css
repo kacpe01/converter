@@ -17,8 +17,8 @@
 
 body { 
   margin: 0; 
-  background-color: var(--background-color);
-  /* Usunięto gradienty z body, ponieważ teraz tłem zarządza canvas */
+  /* --- POPRAWKA: TŁO BODY MUSI BYĆ PRZEZROCZYSTE --- */
+  background-color: transparent;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; 
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
@@ -34,19 +34,10 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Kluczowe, aby canvas był pod resztą treści */
+  z-index: -1; 
+  /* --- POPRAWKA: PRZENIESIENIE KOLORU TŁA TUTAJ --- */
+  background-color: var(--background-color);
 }
-
-
-/* --- USUNIĘTE STARE STYLE TŁA --- */
-/* 
-.background-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-.shape { position: absolute; border-radius: 50%; background: linear-gradient(45deg, rgba(156, 77, 255, 0.2), rgba(156, 77, 255, 0.05)); filter: blur(120px); animation: moveShape 30s infinite alternate ease-in-out; }
-.shape-1 { width: 500px; height: 500px; top: -10%; left: -10%; }
-.shape-2 { width: 400px; height: 400px; bottom: -15%; right: -5%; animation-duration: 40s; animation-delay: -5s; }
-.shape-3 { width: 300px; height: 300px; bottom: 30%; left: 10%; animation-duration: 35s; }
-@keyframes moveShape { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(100px, 50px) rotate(90deg); } }
-*/
 
 .header-wrapper { position: sticky; top: 0; z-index: 1000; padding: 16px 32px; transition: var(--transition-speed); }
 .main-header { max-width: 1400px; margin: 0 auto; background-color: var(--primary-color); border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); border-radius: 14px; padding: 0 24px; height: 70px; display: flex; align-items: center; justify-content: space-between; transition: var(--transition-speed); position: relative; }
