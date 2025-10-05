@@ -8,9 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let particlesArray;
 
-    // --- Ustawienie kolorów ---
     const backgroundColor = '#111118';
-    const lineColor = 'rgba(200, 200, 200, 0.3)'; // Jaśniejszy kolor kresek
 
     function setCanvasSize() {
         canvas.width = window.innerWidth;
@@ -40,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.y = y;
             this.directionX = directionX;
             this.directionY = directionY;
-            this.speed = 0.2; // Zmniejszona prędkość dla subtelniejszego efektu
+            this.speed = 0.2;
         }
 
         update() {
@@ -84,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (distance < (canvas.width / 8) * (canvas.height / 8)) {
                     let opacity = 1 - (distance / 20000);
                     if (opacity > 0) {
-                        ctx.strokeStyle = `rgba(200, 200, 200, ${opacity * 0.3})`; // Jaśniejszy kolor z dynamiczną przezroczystością
+                        ctx.strokeStyle = `rgba(200, 200, 200, ${opacity * 0.3})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -98,9 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
         requestAnimationFrame(animate);
-
-        // --- KLUCZOWA ZMIANA ---
-        // Rysujemy tło bezpośrednio na canvasie w każdej klatce, zamiast używać clearRect()
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
