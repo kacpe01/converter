@@ -1,12 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('interactive-background');
-    if (!canvas) return;
+    if (!canvas) {
+        console.error("Canvas element with ID 'interactive-background' not found.");
+        return;
+    }
 
     const ctx = canvas.getContext('2d');
     let particlesArray;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // --- Ustawienie kolorów ---
+    const backgroundColor = '#111118';
+    const lineColor = 'rgba(200, 200, 200, 0.3)'; // Jaśniejszy kolor kresek
+
+    function setCanvasSize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    setCanvasSize();
 
     let mouse = {
         x: null,
@@ -30,62 +40,51 @@ document.addEventListener('DOMContentLoaded', () => {
             this.y = y;
             this.directionX = directionX;
             this.directionY = directionY;
+            this.speed = 0.2; // Zmniejszona prędkość dla subtelniejszego efektu
         }
 
         update() {
-            // Bounce off edges
-            if (this.x > canvas.width || this.x < 0) {
-                this.directionX = -this.directionX;
-            }
-            if (this.y > canvas.height || this.y < 0) {
-                this.directionY = -this.directionY;
-            }
+            if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+            if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
 
-            // Mouse interaction - repel
             let dx = mouse.x - this.x;
             let dy = mouse.y - this.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
             if (distance < mouse.radius) {
                 let forceDirectionX = dx / distance;
                 let forceDirectionY = dy / distance;
-                let maxDistance = mouse.radius;
-                let force = (maxDistance - distance) / maxDistance;
-                let directionX = forceDirectionX * force * 1.5; // Zwiększona siła odpychania
-                let directionY = forceDirectionY * force * 1.5; // Zwiększona siła odpychania
-
-                this.x -= directionX;
-                this.y -= directionY;
+                let force = (mouse.radius - distance) / mouse.radius;
+                
+                this.x -= forceDirectionX * force * 1.5;
+                this.y -= forceDirectionY * force * 1.5;
             }
 
-            // Move particle
-            this.x += this.directionX;
-            this.y += this.directionY;
+            this.x += this.directionX * this.speed;
+            this.y += this.directionY * this.speed;
         }
     }
 
     function init() {
         particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 9000;
+        let numberOfParticles = (canvas.height * canvas.width) / 10000;
         for (let i = 0; i < numberOfParticles; i++) {
             let x = Math.random() * canvas.width;
             let y = Math.random() * canvas.height;
-            let directionX = (Math.random() * 0.4) - 0.2;
-            let directionY = (Math.random() * 0.4) - 0.2;
+            let directionX = (Math.random() * 2) - 1;
+            let directionY = (Math.random() * 2) - 1;
             particlesArray.push(new Particle(x, y, directionX, directionY));
         }
     }
 
     function connect() {
-        let opacityValue = 1;
         for (let a = 0; a < particlesArray.length; a++) {
             for (let b = a; b < particlesArray.length; b++) {
-                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-                             + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                let distance = ((particlesArray[a].x - particlesArray[b].x) ** 2) + ((particlesArray[a].y - particlesArray[b].y) ** 2);
                 
-                if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                    opacityValue = 1 - (distance / 20000);
-                    if (opacityValue > 0 && opacityValue < 1) {
-                        ctx.strokeStyle = `rgba(140, 140, 140, ${opacityValue * 0.3})`;
+                if (distance < (canvas.width / 8) * (canvas.height / 8)) {
+                    let opacity = 1 - (distance / 20000);
+                    if (opacity > 0) {
+                        ctx.strokeStyle = `rgba(200, 200, 200, ${opacity * 0.3})`; // Jaśniejszy kolor z dynamiczną przezroczystością
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -99,8 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
         requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
 
+        // --- KLUCZOWA ZMIANA ---
+        // Rysujemy tło bezpośrednio na canvasie w każdej klatce, zamiast używać clearRect()
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
         for (let i = 0; i < particlesArray.length; i++) {
             particlesArray[i].update();
         }
@@ -108,8 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('resize', () => {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
+        setCanvasSize();
         mouse.radius = (canvas.height / 100) * (canvas.width / 100);
         init();
     });
